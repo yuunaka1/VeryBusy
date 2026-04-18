@@ -4,6 +4,8 @@
 
 VeryBusy is a TUI (Text User Interface) application built with [Charm's Bubble Tea](https://github.com/charmbracelet/bubbletea) and [Lip Gloss](https://github.com/charmbracelet/lipgloss). It simulates a realistic SOC environment by generating plausible, randomized security alerts, streaming system logs, network traffic, asset health, and simulated telemetry metrics.
 
+![SOC Dashboard Screenshot](assets/screenshot.png)
+
 Perfect for background use while screen sharing, creating hacker-movie vibes, or demonstrating terminal multiplexer workflows.
 
 ## Features
