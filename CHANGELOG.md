@@ -9,7 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `hex` mode for real-time scrolling hexdump of suspicious PE files.
-- `soc` layout extended from 5 panels to 6 panels to incorporate the new hex view.
+
+### Changed
+- `soc` layout revised back to 5 panels (Logs, Alerts, Network, Hex, Assets), removing the telemetry graphs to keep the UI clean.
 
 ## [1.0.0] - 2026-04-18
 
