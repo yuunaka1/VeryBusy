@@ -33,12 +33,13 @@ verybusy soc
 
 | Command | Description |
 |---|---|
-| `verybusy soc` | Full dashboard view with 5 split screens (Left 2, Right 3). |
+| `verybusy soc` | Full dashboard view with 6 split screens (Left 3, Right 3). |
 | `verybusy logs` | Live stream of system, application, and security logs. |
 | `verybusy alerts` | Active incident tracking and detection alerts. |
 | `verybusy network` | Mock real-time network traffic connections (src/dst/ports). |
 | `verybusy graphs` | Telemetry graph view (Anomaly scores, etc.). |
 | `verybusy assets` | Endpoint status, showing risk scores and EDR agent states. |
+| `verybusy hex` | Real-time scrolling hexdump of a suspicious PE executable in analysis. |
 
 ### Global Flags
 

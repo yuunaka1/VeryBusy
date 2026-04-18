@@ -75,11 +75,17 @@ var networkCmd = &cobra.Command{
 	Run:   func(cmd *cobra.Command, args []string) { runMode("network") },
 }
 
+var hexCmd = &cobra.Command{
+	Use:   "hex",
+	Short: "Run malware binary hex analysis mode",
+	Run:   func(cmd *cobra.Command, args []string) { runMode("hex") },
+}
+
 func main() {
 	rootCmd.PersistentFlags().StringVarP(&themeFlag, "theme", "t", "soc", "Simulation theme/scenario (soc, cloud, endpoint)")
 	rootCmd.PersistentFlags().Int64VarP(&seedFlag, "seed", "s", 0, "Simulation seed (0 for random)")
 
-	rootCmd.AddCommand(socCmd, logsCmd, alertsCmd, graphsCmd, assetsCmd, networkCmd)
+	rootCmd.AddCommand(socCmd, logsCmd, alertsCmd, graphsCmd, assetsCmd, networkCmd, hexCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)

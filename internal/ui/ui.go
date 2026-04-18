@@ -25,6 +25,7 @@ type MainModel struct {
 	assetsView  *AssetsView
 	graphsView  *GraphsView
 	networkView *NetworkView
+	hexView     *HexView
 	
 	// Layout properties
 	splitLayout bool
@@ -53,6 +54,7 @@ func NewMainModel(engine *sim.Engine, mode string) *MainModel {
 	vAssets := NewAssetsView(engine)
 	vGraphs := NewGraphsView(engine)
 	vNetwork := NewNetworkView(engine)
+	vHex := NewHexView(engine)
 	
 	return &MainModel{
 		engine:      engine,
@@ -63,6 +65,7 @@ func NewMainModel(engine *sim.Engine, mode string) *MainModel {
 		assetsView:  vAssets,
 		graphsView:  vGraphs,
 		networkView: vNetwork,
+		hexView:     vHex,
 	}
 }
 
@@ -88,12 +91,13 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		// Update sub-views based on mode
 		if m.splitLayout {
-			// Split into left 2 screens and right 3 screens
+			// Split into left 3 screens and right 3 screens
 			leftW := m.width / 2
 			rightW := m.width - leftW
 			
-			leftH1 := contentHeight / 2
-			leftH2 := contentHeight - leftH1
+			leftH1 := contentHeight / 3
+			leftH2 := contentHeight / 3
+			leftH3 := contentHeight - leftH1 - leftH2
 			
 			rightH1 := contentHeight / 3
 			rightH2 := contentHeight / 3
@@ -101,6 +105,7 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			
 			m.logsView.SetSize(leftW, leftH1)
 			m.alertsView.SetSize(leftW, leftH2)
+			m.hexView.SetSize(leftW, leftH3)
 			
 			m.graphsView.SetSize(rightW, rightH1)
 			m.networkView.SetSize(rightW, rightH2)
@@ -117,6 +122,8 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.assetsView.SetSize(m.width, contentHeight)
 			case "network":
 				m.networkView.SetSize(m.width, contentHeight)
+			case "hex":
+				m.hexView.SetSize(m.width, contentHeight)
 			}
 		}
 		
@@ -129,12 +136,14 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.assetsView.Update(msg)
 		m.graphsView.Update(msg)
 		m.networkView.Update(msg)
+		m.hexView.Update(msg)
 		
 		cmds = append(cmds, tickCmd())
 		
 	case logTickMsg:
 		m.engine.GenerateLogs(time.Time(msg))
 		m.logsView.Update(msg)
+		m.hexView.Update(msg)
 		cmds = append(cmds, logTickCmd())
 	}
 
@@ -158,7 +167,7 @@ func (m *MainModel) View() string {
 	var content string
 
 	if m.splitLayout {
-		leftPanel := lipgloss.JoinVertical(lipgloss.Left, m.logsView.View(), m.alertsView.View())
+		leftPanel := lipgloss.JoinVertical(lipgloss.Left, m.logsView.View(), m.alertsView.View(), m.hexView.View())
 		rightPanel := lipgloss.JoinVertical(lipgloss.Left, m.graphsView.View(), m.networkView.View(), m.assetsView.View())
 		content = lipgloss.JoinHorizontal(lipgloss.Top, leftPanel, rightPanel)
 	} else {
@@ -173,6 +182,8 @@ func (m *MainModel) View() string {
 			content = m.assetsView.View()
 		case "network":
 			content = m.networkView.View()
+		case "hex":
+			content = m.hexView.View()
 		default:
 			content = "Unknown mode"
 		}
