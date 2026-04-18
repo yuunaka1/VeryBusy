@@ -18,7 +18,7 @@ Perfect for background use while screen sharing, creating hacker-movie vibes, or
 ## Installation
 
 ```bash
-go install github.com/yourusername/verybusy/cmd/verybusy@latest
+go install github.com/yuunaka1/VeryBusy/cmd/verybusy@latest
 ```
 *(Alternatively, clone the repository and build via `go build -o verybusy ./cmd/verybusy`)*
 
