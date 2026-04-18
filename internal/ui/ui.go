@@ -8,8 +8,8 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	
-	"verybusy/internal/sim"
-	"verybusy/internal/theme"
+	"github.com/yuunaka1/VeryBusy/internal/sim"
+	"github.com/yuunaka1/VeryBusy/internal/theme"
 )
 
 // MainModel wraps the currently active view

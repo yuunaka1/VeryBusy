@@ -8,8 +8,8 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
 	
-	"verybusy/internal/sim"
-	"verybusy/internal/ui"
+	"github.com/yuunaka1/VeryBusy/internal/sim"
+	"github.com/yuunaka1/VeryBusy/internal/ui"
 )
 
 var (

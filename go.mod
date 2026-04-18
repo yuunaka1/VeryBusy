@@ -1,4 +1,4 @@
-module verybusy
+module github.com/yuunaka1/VeryBusy
 
 go 1.21
 
